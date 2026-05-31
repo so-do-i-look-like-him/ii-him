@@ -52,8 +52,7 @@ Scope {
                     IslandContent {
                         id: islandContent
                         anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.top: parent.top
-                        anchors.topMargin: island.screenGap
+                        anchors.verticalCenter: parent.verticalCenter
                     }
                 }
             }
