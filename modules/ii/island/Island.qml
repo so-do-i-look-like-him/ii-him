@@ -34,7 +34,7 @@ Scope {
                 WlrLayershell.namespace: "quickshell:island"
                 WlrLayershell.layer: WlrLayer.Top
                 WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
-                exclusiveZone: island.screenGap + 120 + island.screenGap
+                exclusiveZone: island.screenGap + 44 + island.screenGap
 
                 anchors {
                     top: true
@@ -42,7 +42,7 @@ Scope {
                     right: true
                 }
 
-                implicitHeight: island.screenGap + 120 + island.screenGap
+                implicitHeight: island.screenGap + 44 + island.screenGap
                 color: "transparent"
 
                 MouseArea {
