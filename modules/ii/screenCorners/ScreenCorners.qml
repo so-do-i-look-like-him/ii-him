@@ -116,12 +116,7 @@ Scope {
                         }
                     }
                     onMovedAway: {
-                        if (!Config.options.sidebar.cornerOpen.valueScroll)
-                            return;
-                        if (cornerWidget.isLeft)
-                            GlobalStates.osdBrightnessOpen = false;
-                        else
-                            GlobalStates.osdVolumeOpen = false;
+                        // OSD timeout handles closing — don't close immediately on mouse leave
                     }
 
                     Loader {

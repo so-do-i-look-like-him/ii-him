@@ -406,7 +406,7 @@ Singleton {
             }
 
             property JsonObject osd: JsonObject {
-                property int timeout: 1000
+                property int timeout: 6000
             }
 
             property JsonObject osk: JsonObject {
@@ -590,6 +590,15 @@ Singleton {
             property JsonObject windows: JsonObject {
                 property bool showTitlebar: true // Client-side decoration for shell apps
                 property bool centerTitle: true
+            }
+
+            property JsonObject island: JsonObject {
+                property bool enable: true
+                property string workspaceStyle: "minimal" // "minimal", "appicon", "numbers"
+                property int autoHideTimeout: 700 // ms before collapsing after workspace switch
+                property bool showOnSuperHold: true
+                property bool showOnWorkspaceSwitch: true
+                property int showDelay: 80 // ms delay before showing on super press
             }
 
             property JsonObject hacks: JsonObject {

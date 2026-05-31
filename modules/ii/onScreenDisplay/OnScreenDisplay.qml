@@ -32,7 +32,13 @@ Scope {
     ]
 
     function triggerOsd() {
-        GlobalStates.osdVolumeOpen = true;
+        if (root.currentIndicator === "brightness") {
+            GlobalStates.osdVolumeOpen = false;
+            GlobalStates.osdBrightnessOpen = true;
+        } else {
+            GlobalStates.osdBrightnessOpen = false;
+            GlobalStates.osdVolumeOpen = true;
+        }
         osdTimeout.restart();
     }
 
@@ -43,6 +49,7 @@ Scope {
         running: false
         onTriggered: {
             GlobalStates.osdVolumeOpen = false;
+            GlobalStates.osdBrightnessOpen = false;
             root.protectionMessage = "";
         }
     }
@@ -60,7 +67,7 @@ Scope {
         target: Hyprsunset
         function onGammaChangeAttempt() {
             root.protectionMessage = "";
-            root.currentIndicator = "gamma";
+            root.currentIndicator = "brightness";
             root.triggerOsd();
         }
     }
@@ -94,7 +101,7 @@ Scope {
 
     Loader {
         id: osdLoader
-        active: GlobalStates.osdVolumeOpen
+        active: false // Disabled — OSD now integrated into the Dynamic Island
 
         sourceComponent: PanelWindow {
             id: osdRoot

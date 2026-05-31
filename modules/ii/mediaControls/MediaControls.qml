@@ -53,22 +53,26 @@ Scope {
         return filtered;
     }
 
-    Process {
-        id: cavaProc
-        running: mediaControlsLoader.active
-        onRunningChanged: {
-            if (!cavaProc.running) {
-                root.visualizerPoints = [];
-            }
-        }
-        command: ["cava", "-p", `${FileUtils.trimFileProtocol(Directories.scriptPath)}/cava/raw_output_config.txt`]
-        stdout: SplitParser {
-            onRead: data => {
-                // Parse `;`-separated values into the visualizerPoints array
-                let points = data.split(";").map(p => parseFloat(p.trim())).filter(p => !isNaN(p));
+    FileView {
+        id: visualizerFile
+        path: "/tmp/quickshell_audio_bars"
+        onLoaded: {
+            let points = text().trim().split(/\s+/).map(p => parseFloat(p)).filter(p => !isNaN(p));
+            if (points.length > 0) {
                 root.visualizerPoints = points;
             }
         }
+        onLoadFailed: error => {
+            root.visualizerPoints = [];
+        }
+    }
+
+    Timer {
+        id: visualizerTimer
+        running: mediaControlsLoader.active
+        repeat: true
+        interval: 50
+        onTriggered: visualizerFile.reload()
     }
 
     Loader {

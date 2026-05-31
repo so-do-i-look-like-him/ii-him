@@ -34,7 +34,7 @@ ShellRoot {
 
 
     // Panel families
-    property list<string> families: ["ii", "waffle"]
+    property list<string> families: ["ii", "waffle", "island"]
     function cyclePanelFamily() {
         const currentIndex = families.indexOf(Config.options.panelFamily)
         const nextIndex = (currentIndex + 1) % families.length
@@ -50,11 +50,18 @@ ShellRoot {
     PanelFamilyLoader {
         identifier: "ii"
         component: IllogicalImpulseFamily {}
+        extraCondition: true // Restoring to default
     }
 
     PanelFamilyLoader {
         identifier: "waffle"
         component: WaffleFamily {}
+        extraCondition: true // Restoring to default
+    }
+
+    PanelFamilyLoader {
+        identifier: "island"
+        component: IslandFamily {}
     }
 
 

@@ -22,8 +22,8 @@ Item { // Player instance
     property color artDominantColor: ColorUtils.mix((colorQuantizer?.colors[0] ?? Appearance.colors.colPrimary), Appearance.colors.colPrimaryContainer, 0.8) || Appearance.m3colors.m3secondaryContainer
     property bool downloaded: false
     property list<real> visualizerPoints: []
-    property real maxVisualizerValue: 1000 // Max value in the data points
-    property int visualizerSmoothing: 2 // Number of points to average for smoothing
+    property real maxVisualizerValue: 160 // Higher value = smaller visualizer wave
+    property int visualizerSmoothing: 0 // Keep bands separate for accurate music reaction
     property real radius
 
     property string displayedArtFilePath: root.downloaded ? Qt.resolvedUrl(artFilePath) : ""

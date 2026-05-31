@@ -1,8 +1,13 @@
 [general]
-mode = waves
+mode = normal
 framerate = 60
-autosens = 1
-bars = 50
+autosens = 0
+bars = 8
+sensitivity = 25
+
+[input]
+method = pulse
+source = auto
 
 [output]
 method = raw
@@ -13,5 +18,3 @@ mono_option = average
 
 [smoothing]
 noise_reduction = 20
-
-
