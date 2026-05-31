@@ -32,7 +32,7 @@ Scope {
                 WlrLayershell.namespace: "quickshell:island"
                 WlrLayershell.layer: WlrLayer.Top
                 WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
-                exclusiveZone: -1
+                exclusiveZone: 120 + Appearance.sizes.hyprlandGapsOut
 
                 anchors {
                     top: true
