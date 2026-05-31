@@ -8,7 +8,7 @@ import qs.modules.common
 import qs.modules.common.widgets
 import qs.modules.common.functions
 import qs.modules.common.panels.lock
-import qs.modules.ii.bar as Bar
+import qs.modules.ii.island as Island
 import Quickshell
 import Quickshell.Services.SystemTray
 
@@ -277,14 +277,14 @@ MouseArea {
             }
         }
 
-        // Keyboard layout (Fcitx)
-        Bar.SysTray {
+        // Keyboard layout (Fcitx/Hyprland)
+        Text {
+            text: HyprlandXkb.currentLayoutName || ""
+            font.pixelSize: 14
+            color: Appearance.colors.colText
+            visible: text.length > 0
             Layout.rightMargin: 10
             Layout.alignment: Qt.AlignVCenter
-            showSeparator: false
-            showOverflowMenu: false
-            pinnedItems: SystemTray.items.values.filter(i => i.id == "Fcitx")
-            visible: pinnedItems.length > 0
         }
     }
 

@@ -58,7 +58,7 @@ Item {
         target: Hyprland
         function onFocusedWorkspaceChanged() {
             updateWorkspaceOccupied();
-            if (Config.options.island.showOnWorkspaceSwitch) {
+            if (Config.options.workspaceIndicator.showOnWorkspaceSwitch) {
                 triggerWorkspaceShow();
             }
         }
@@ -66,7 +66,7 @@ Item {
 
     Timer {
         id: workspaceAutoHideTimer
-        interval: Config.options.island.autoHideTimeout
+        interval: Config.options.workspaceIndicator.autoHideTimeout
         repeat: false
         onTriggered: {
             if (!GlobalStates.superDown) {
@@ -80,7 +80,7 @@ Item {
     Connections {
         target: GlobalStates
         function onSuperDownChanged() {
-            if (!Config.options.island.showOnSuperHold) return;
+            if (!Config.options.workspaceIndicator.showOnSuperHold) return;
             if (GlobalStates.superDown) {
                 root.showWorkspace = true;
                 workspaceAutoHidePending = false;

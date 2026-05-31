@@ -592,7 +592,7 @@ Singleton {
                 property bool centerTitle: true
             }
 
-            property JsonObject island: JsonObject {
+            property JsonObject workspaceIndicator: JsonObject {
                 property bool enable: true
                 property string workspaceStyle: "minimal" // "minimal", "appicon", "numbers"
                 property int autoHideTimeout: 700 // ms before collapsing after workspace switch
