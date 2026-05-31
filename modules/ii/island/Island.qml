@@ -11,7 +11,7 @@ import qs.modules.common
 Scope {
     id: island
 
-    property int screenGap: 5
+    property int screenGap: 25
 
     Variants {
         // For each monitor
