@@ -30,7 +30,7 @@ Scope {
 
             anchors.top: true
             margins {
-                top: Config?.options.bar.vertical ? Appearance.sizes.hyprlandGapsOut : Appearance.sizes.barHeight + Appearance.sizes.hyprlandGapsOut
+                top: Config?.options.island.vertical ? Appearance.sizes.hyprlandGapsOut : Appearance.sizes.islandHeight + Appearance.sizes.hyprlandGapsOut
             }
 
             mask: Region {

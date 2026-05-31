@@ -117,8 +117,8 @@ Scope {
             WlrLayershell.namespace: "quickshell:onScreenDisplay"
             WlrLayershell.layer: WlrLayer.Overlay
             anchors {
-                top: !Config.options.bar.bottom
-                bottom: Config.options.bar.bottom
+                top: !Config.options.island.bottom
+                bottom: Config.options.island.bottom
             }
             mask: Region {
                 item: osdValuesWrapper
@@ -127,8 +127,8 @@ Scope {
             exclusionMode: ExclusionMode.Ignore
             exclusiveZone: 0
             margins {
-                top: Appearance.sizes.barHeight
-                bottom: Appearance.sizes.barHeight
+                top: Appearance.sizes.islandHeight
+                bottom: Appearance.sizes.islandHeight
             }
 
             implicitWidth: columnLayout.implicitWidth

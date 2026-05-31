@@ -24,7 +24,7 @@ Item {
     property bool showWorkspace: false
     property bool workspaceAutoHidePending: false
     property list<bool> workspaceOccupied: []
-    readonly property int workspacesShown: Config.options.bar.workspaces.shown
+    readonly property int workspacesShown: Config.options.island.workspaces.shown
     readonly property int workspaceGroup: Math.floor((activeWorkspaceId - 1) / workspacesShown)
     property int lastShownWorkspaceId: -1
 
@@ -217,21 +217,21 @@ Item {
     }
 
     Process {
-        id: barVisualizerProc
+        id: islandVisualizerProc
         running: root.mediaPlaying
         command: ["cava", "-p", `${FileUtils.trimFileProtocol(Directories.scriptPath)}/cava/raw_output_config.txt`]
         stdout: SplitParser {
             onRead: data => root.setVisualizerLevels(data)
         }
         onRunningChanged: {
-            if (!barVisualizerProc.running)
+            if (!islandVisualizerProc.running)
                 root.visualizerLevels = [0, 0, 0, 0, 0, 0, 0, 0];
         }
     }
 
-    // Completely hide the original bar background
+    // Hide the original island background
     Rectangle {
-        id: barBackground
+        id: islandBackground
         visible: false
     }
 

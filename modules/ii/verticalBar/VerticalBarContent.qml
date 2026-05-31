@@ -8,17 +8,17 @@ import qs.services
 import qs.modules.common
 import qs.modules.common.widgets
 import qs.modules.common.functions
-import qs.modules.ii.bar as Bar
+import qs.modules.ii.island as Island
 
-Item { // Bar content region
+Item { // Island content region
     id: root
 
     property var screen: root.QsWindow.window?.screen
     property var brightnessMonitor: Brightness.getMonitorForScreen(screen)
 
-    component HorizontalBarSeparator: Rectangle {
-        Layout.leftMargin: Appearance.sizes.baseBarHeight / 3
-        Layout.rightMargin: Appearance.sizes.baseBarHeight / 3
+    component HorizontalIslandSeparator: Rectangle {
+        Layout.leftMargin: Appearance.sizes.baseIslandHeight / 3
+        Layout.rightMargin: Appearance.sizes.baseIslandHeight / 3
         Layout.fillWidth: true
         implicitHeight: 1
         color: Appearance.colors.colOutlineVariant
@@ -26,28 +26,28 @@ Item { // Bar content region
 
     // Background shadow
     Loader {
-        active: Config.options.bar.showBackground && Config.options.bar.cornerStyle === 1
-        anchors.fill: barBackground
+        active: Config.options.island.showBackground && Config.options.island.cornerStyle === 1
+        anchors.fill: islandBackground
         sourceComponent: StyledRectangularShadow {
             anchors.fill: undefined // The loader's anchors act on this, and this should not have any anchor
-            target: barBackground
+            target: islandBackground
         }
     }
     // Background
     Rectangle {
-        id: barBackground
+        id: islandBackground
         anchors {
             fill: parent
-            margins: Config.options.bar.cornerStyle === 1 ? (Appearance.sizes.hyprlandGapsOut) : 0 // idk why but +1 is needed
+            margins: Config.options.island.cornerStyle === 1 ? (Appearance.sizes.hyprlandGapsOut) : 0 // idk why but +1 is needed
         }
-        color: Config.options.bar.showBackground ? Appearance.colors.colLayer0 : "transparent"
-        radius: Config.options.bar.cornerStyle === 1 ? Appearance.rounding.windowRounding : 0
-        border.width: Config.options.bar.cornerStyle === 1 ? 1 : 0
+        color: Config.options.island.showBackground ? Appearance.colors.colLayer0 : "transparent"
+        radius: Config.options.island.cornerStyle === 1 ? Appearance.rounding.windowRounding : 0
+        border.width: Config.options.island.cornerStyle === 1 ? 1 : 0
         border.color: Appearance.colors.colLayer0Border
     }
 
     FocusedScrollMouseArea { // Top section | scroll to change brightness
-        id: barTopSectionMouseArea
+        id: islandTopSectionMouseArea
         anchors.top: parent.top
         implicitHeight: topSectionColumnLayout.implicitHeight
         implicitWidth: Appearance.sizes.baseVerticalBarWidth
@@ -67,10 +67,10 @@ Item { // Bar content region
             anchors.fill: parent
             spacing: 10
 
-            Bar.LeftSidebarButton { // Left sidebar button
+            Island.LeftSidebarButton { // Left sidebar button
                 Layout.alignment: Qt.AlignHCenter
                 Layout.topMargin: (Appearance.sizes.baseVerticalBarWidth - implicitWidth) / 2 + Appearance.sizes.hyprlandGapsOut
-                colBackground: barTopSectionMouseArea.hovered ? Appearance.colors.colLayer1Hover : ColorUtils.transparentize(Appearance.colors.colLayer1Hover, 1)
+                colBackground: islandTopSectionMouseArea.hovered ? Appearance.colors.colLayer1Hover : ColorUtils.transparentize(Appearance.colors.colLayer1Hover, 1)
             }
 
             Item {
@@ -85,7 +85,7 @@ Item { // Bar content region
         anchors.centerIn: parent
         spacing: 4
 
-        Bar.BarGroup {
+        Island.IslandGroup {
             vertical: true
             padding: 8
             Resources {
@@ -93,7 +93,7 @@ Item { // Bar content region
                 Layout.fillHeight: false
             }
             
-            HorizontalBarSeparator {}
+            HorizontalIslandSeparator {}
 
             VerticalMedia {
                 Layout.fillWidth: true
@@ -101,16 +101,16 @@ Item { // Bar content region
             }
         }
 
-        HorizontalBarSeparator {
-            visible: Config.options?.bar.borderless
+        HorizontalIslandSeparator {
+            visible: Config.options?.island.borderless
         }
 
-        Bar.BarGroup {
+        Island.IslandGroup {
             id: middleCenterGroup
             vertical: true
             padding: 6
 
-            Bar.Workspaces {
+            Island.Workspaces {
                 id: workspacesWidget
                 vertical: true
                 MouseArea {
@@ -127,11 +127,11 @@ Item { // Bar content region
             }
         }
 
-        HorizontalBarSeparator {
-            visible: Config.options?.bar.borderless
+        HorizontalIslandSeparator {
+            visible: Config.options?.island.borderless
         }
 
-        Bar.BarGroup {
+        Island.IslandGroup {
             vertical: true
             padding: 8
             
@@ -140,7 +140,7 @@ Item { // Bar content region
                 Layout.fillHeight: false
             }
 
-            HorizontalBarSeparator {
+            HorizontalIslandSeparator {
                 visible: Battery.available
             }
 
@@ -154,7 +154,7 @@ Item { // Bar content region
     }
 
     FocusedScrollMouseArea { // Bottom section | scroll to change volume
-        id: barBottomSectionMouseArea
+        id: islandBottomSectionMouseArea
 
         anchors {
             left: parent.left
@@ -183,11 +183,11 @@ Item { // Bar content region
                 Layout.fillHeight: true 
             }
 
-            Bar.SysTray {
+            Island.SysTray {
                 vertical: true
                 Layout.fillWidth: true
                 Layout.fillHeight: false
-                invertSide: Config?.options.bar.bottom
+                invertSide: Config?.options.island.bottom
             }
 
             RippleButton { // Right sidebar button
@@ -201,7 +201,7 @@ Item { // Bar content region
                 implicitWidth: indicatorsColumnLayout.implicitWidth + 6 * 2
 
                 buttonRadius: Appearance.rounding.full
-                colBackground: barBottomSectionMouseArea.hovered ? Appearance.colors.colLayer1Hover : ColorUtils.transparentize(Appearance.colors.colLayer1Hover, 1)
+                colBackground: islandBottomSectionMouseArea.hovered ? Appearance.colors.colLayer1Hover : ColorUtils.transparentize(Appearance.colors.colLayer1Hover, 1)
                 colBackgroundHover: Appearance.colors.colLayer1Hover
                 colRipple: Appearance.colors.colLayer1Active
                 colBackgroundToggled: Appearance.colors.colSecondaryContainer
@@ -252,7 +252,7 @@ Item { // Bar content region
                             color: rightSidebarButton.colText
                         }
                     }
-                    Bar.HyprlandXkbIndicator {
+                    Island.HyprlandXkbIndicator {
                         vertical: true
                         Layout.alignment: Qt.AlignHCenter
                         Layout.bottomMargin: indicatorsColumnLayout.realSpacing
@@ -268,7 +268,7 @@ Item { // Bar content region
                         Behavior on Layout.bottomMargin {
                             animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
                         }
-                        Bar.NotificationUnreadCount {
+                        Island.NotificationUnreadCount {
                             id: notificationUnreadCount
                         }
                     }

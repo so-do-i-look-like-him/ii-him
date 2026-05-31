@@ -9,27 +9,27 @@ import qs.services
 import qs.modules.common
 
 Scope {
-    id: bar
+    id: island
 
     Variants {
         // For each monitor
         model: {
             const screens = Quickshell.screens;
-            const list = Config.options.bar.screenList;
+            const list = Config.options.island.screenList;
             if (!list || list.length === 0)
                 return screens;
             return screens.filter(screen => list.includes(screen.name));
         }
         LazyLoader {
-            id: barLoader
+            id: islandLoader
             active: !GlobalStates.screenLocked
             required property ShellScreen modelData
             component: PanelWindow {
-                id: barRoot
-                screen: barLoader.modelData
+                id: islandRoot
+                screen: islandLoader.modelData
 
                 // Island window — transparent, top layer, no keyboard focus
-                WlrLayershell.namespace: "quickshell:bar"
+                WlrLayershell.namespace: "quickshell:island"
                 WlrLayershell.layer: WlrLayer.Top
                 WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
                 exclusiveZone: -1
@@ -48,8 +48,8 @@ Scope {
                     anchors.fill: parent
                     hoverEnabled: true
 
-                    BarContent {
-                        id: barContent
+                    IslandContent {
+                        id: islandContent
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.top: parent.top
                         anchors.topMargin: 15

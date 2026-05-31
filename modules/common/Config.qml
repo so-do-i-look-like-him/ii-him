@@ -223,7 +223,7 @@ Singleton {
                 }
             }
 
-            property JsonObject bar: JsonObject {
+            property JsonObject island: JsonObject {
                 property JsonObject autoHide: JsonObject {
                     property bool enable: false
                     property int hoverRegionWidth: 2

@@ -3,7 +3,7 @@ import Quickshell
 
 import qs.modules.common
 import qs.modules.ii.background
-import qs.modules.ii.bar
+import qs.modules.ii.island
 import qs.modules.ii.cheatsheet
 import qs.modules.ii.dock
 import qs.modules.ii.lock
@@ -23,7 +23,7 @@ import qs.modules.ii.verticalBar
 import qs.modules.ii.wallpaperSelector
 
 Scope {
-    PanelLoader { extraCondition: !Config.options.bar.vertical; component: Bar {} }
+    PanelLoader { extraCondition: !Config.options.island.vertical; component: Island {} }
     PanelLoader { component: Background {} }
     PanelLoader { component: Cheatsheet {} }
     PanelLoader { extraCondition: Config.options.dock.enable; component: Dock {} }
@@ -40,6 +40,6 @@ Scope {
     PanelLoader { component: SessionScreen {} }
     PanelLoader { component: SidebarLeft {} }
     PanelLoader { component: SidebarRight {} }
-    PanelLoader { extraCondition: Config.options.bar.vertical; component: VerticalBar {} }
+    PanelLoader { extraCondition: Config.options.island.vertical; component: VerticalBar {} }
     PanelLoader { component: WallpaperSelector {} }
 }

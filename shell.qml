@@ -61,7 +61,8 @@ ShellRoot {
 
     PanelFamilyLoader {
         identifier: "island"
-        component: IslandFamily {}
+        component: IllogicalImpulseFamily {}
+        // Alias: "island" loads the same family since island IS the main interface
     }
 
 

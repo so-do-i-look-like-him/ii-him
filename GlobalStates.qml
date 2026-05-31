@@ -9,7 +9,7 @@ pragma ComponentBehavior: Bound
 
 Singleton {
     id: root
-    property bool barOpen: true
+    property bool islandOpen: true
     property bool crosshairOpen: false
     property bool sidebarLeftOpen: false
     property bool sidebarRightOpen: false
