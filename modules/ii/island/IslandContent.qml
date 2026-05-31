@@ -581,8 +581,8 @@ Item {
             Item {
                 id: osdContent
                 anchors.fill: parent
-                visible: islandShape.osdActive && !islandShape.isHovered
-                opacity: islandShape.osdActive && !islandShape.isHovered ? 1 : 0
+                visible: islandShape.osdActive && !((islandShape.isRecordingNow || islandShape.isScreenSharingNow) && islandShape.isHovered)
+                opacity: islandShape.osdActive && !((islandShape.isRecordingNow || islandShape.isScreenSharingNow) && islandShape.isHovered) ? 1 : 0
                 Behavior on opacity { NumberAnimation { duration: 280; easing.type: Easing.InOutQuad } }
 
                 // Left: Icon
