@@ -11,6 +11,8 @@ import qs.modules.common
 Scope {
     id: island
 
+    property int screenGap: 5
+
     Variants {
         // For each monitor
         model: {
@@ -32,7 +34,7 @@ Scope {
                 WlrLayershell.namespace: "quickshell:island"
                 WlrLayershell.layer: WlrLayer.Top
                 WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
-                exclusiveZone: 10 + 120 + 10
+                exclusiveZone: island.screenGap + 120 + island.screenGap
 
                 anchors {
                     top: true
@@ -40,25 +42,18 @@ Scope {
                     right: true
                 }
 
-                margins {
-                    top: 10
-                    left: 10
-                    right: 10
-                }
-
-                implicitHeight: 120
+                implicitHeight: island.screenGap + 120 + island.screenGap
                 color: "transparent"
 
                 MouseArea {
                     id: hoverRegion
                     anchors.fill: parent
-                    hoverEnabled: true
 
                     IslandContent {
                         id: islandContent
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.top: parent.top
-                        anchors.topMargin: 15
+                        anchors.topMargin: island.screenGap
                     }
                 }
             }
