@@ -40,6 +40,12 @@ Scope {
                     right: true
                 }
 
+                margins {
+                    top: Appearance.sizes.hyprlandGapsOut
+                    left: Appearance.sizes.hyprlandGapsOut
+                    right: Appearance.sizes.hyprlandGapsOut
+                }
+
                 implicitHeight: 120
                 color: "transparent"
 
