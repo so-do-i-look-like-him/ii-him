@@ -164,7 +164,7 @@ Item {
     Process {
         id: screenShareCheckProc
         running: true
-        command: ["bash", "/home/him/.config/quickshell/ii/scripts/detect-screenshare.sh"]
+        command: ["bash", Quickshell.shellPath("scripts/detect-screenshare.sh")]
         stdout: SplitParser {
             onRead: function(data) {
                 var val = parseInt(String(data).trim());

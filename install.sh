@@ -22,6 +22,18 @@ if ! command -v git &> /dev/null || ! pacman -Qs base-devel &> /dev/null; then
     sudo pacman -S --needed --noconfirm git base-devel
 fi
 
+# 2.5. Install runtime dependencies for island features
+echo "📦 Installing island runtime dependencies..."
+sudo pacman -S --needed --noconfirm \
+    cava \
+    pipewire \
+    pipewire-pulse \
+    python3 \
+    wf-recorder \
+    ttf-inter \
+    ttf-material-symbols-variable-git \
+    2>/dev/null || echo "⚠️ Some packages may need manual installation (check AUR for ttf-inter)"
+
 # 3. Clone and run end4's base dots-hyprland installer
 echo "⚙️ Installing base dots-hyprland (end4)..."
 TEMP_DIR=$(mktemp -d)
@@ -59,6 +71,25 @@ echo "🔗 Setting up GitHub remotes for syncing..."
 git remote set-url origin https://github.com/so-do-i-look-like-him/II-him.git || true
 git remote add upstream https://github.com/end4/illogical-impulse.git || true
 
+# 7. Ensure scripts are executable
+echo "🔧 Making scripts executable..."
+chmod +x "$CONFIG_DIR/scripts/detect-screenshare.sh"
+
+# 8. Restart QuickShell if running
+echo "🔄 Restarting QuickShell..."
+killall -9 qs quickshell 2>/dev/null || true
+sleep 1
+if command -v qs &> /dev/null; then
+    qs -c "$CONFIG_DIR" &
+    echo "✅ QuickShell restarted."
+fi
+
 echo "✅ Full Installation Complete!"
 echo "Your system now has the end4 base + your personal QuickShell tweaks."
-echo "💡 You can now reload Hyprland or start QuickShell."
+echo "💡 Island features:"
+echo "   • Clock + Audio Visualizer (cava)"
+echo "   • Recording Indicator (wf-recorder detection)"
+echo "   • Screen Sharing Indicator (PipeWire detection)"
+echo "   • OSD (brightness/volume)"
+echo "   • Workspace indicator (super hold)"
+echo "   • Inline notifications"
